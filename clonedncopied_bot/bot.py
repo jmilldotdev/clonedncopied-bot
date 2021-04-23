@@ -38,15 +38,22 @@ class AdminCog(commands.Cog):
             messages = await channel.history().flatten()
             all_messages.append(messages)
         all_messages_flat = [i for s in all_messages for i in s]
-        amfd = [{
-            "author": message.author,
-            "channel": message.channel,
-            "created_at": message.created_at,
-            "content": message.content,
-            "type": message.type
-        } for message in all_messages_flat]
+        amfd = [
+            {
+                "author": message.author,
+                "channel": message.channel,
+                "created_at": message.created_at,
+                "content": message.content,
+                "type": message.type,
+            }
+            for message in all_messages_flat
+        ]
         df = pd.DataFrame(amfd)
-        df.to_csv(self.bot.data_dir / f"{ctx.guild.id}_{datetime.now().timestamp()}_messages.csv")
+        df.to_csv(
+            self.bot.data_dir
+            / f"{ctx.guild.id}_{round(datetime.now().timestamp())}_messages.csv",
+            index=False,
+        )
         print("finished getting messages")
 
 
