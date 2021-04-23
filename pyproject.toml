@@ -8,6 +8,7 @@ authors = ["Jonathan Miller <jon@jmill.dev>"]
 python = "^3.9"
 "discord.py" = "^1.7.1"
 python-dotenv = "^0.17.0"
+pandas = "^1.2.4"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^20.8b1", allow-prereleases = true}
